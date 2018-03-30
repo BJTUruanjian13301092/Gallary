@@ -10,7 +10,6 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @RestController
-@RequestMapping("/hello")
 public class TestController {
 
     @Autowired
@@ -27,7 +26,7 @@ public class TestController {
         return userService.showUsers();
     }
 
-    @RequestMapping("/index")
+    @RequestMapping("/")
     public ModelAndView toIndex(){
         return new ModelAndView("index");
     }
