@@ -5,6 +5,7 @@ import com.example.txcloud.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
@@ -24,5 +25,10 @@ public class TestController {
     @RequestMapping("/showUser")
     public List<UserEntity> showUser(){
         return userService.showUsers();
+    }
+
+    @RequestMapping("/index")
+    public ModelAndView toIndex(){
+        return new ModelAndView("index");
     }
 }
