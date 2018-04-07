@@ -30,4 +30,10 @@ public class TestController {
     public ModelAndView toIndex(){
         return new ModelAndView("index");
     }
+
+    @RequestMapping("/test")
+    public ModelAndView toList() {
+        return new ModelAndView("master_list");
+    }
+
 }
