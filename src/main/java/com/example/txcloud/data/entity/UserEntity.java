@@ -1,11 +1,15 @@
 package com.example.txcloud.data.entity;
 
+import lombok.Data;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import java.sql.Timestamp;
 
 @Entity
+@Data
 @Table(name="test_user")
 public class UserEntity {
 
@@ -15,39 +19,27 @@ public class UserEntity {
 
     private String name;
 
-    private String sex;
+    private Boolean sex;
+
+    private Byte status;
+
+    private String password;
+
+    private Long wechatId;
+
+    private Long qqId;
+
+    private Long weiboId;
+
+    private String phone;
+
+    private String introduction;
+
+    private Timestamp createTime;
+
+    private Timestamp updateTime;
+
+    private Timestamp birthday;
 
     private Integer age;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getSex() {
-        return sex;
-    }
-
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
-
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
 }

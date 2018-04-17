@@ -16,14 +16,14 @@ public class TestController {
     UserService userService;
 
     @RequestMapping("/saveUser")
-    public String saveUser(){
-        userService.saveUser();
+    public String saveUser(UserEntity user){
+        userService.saveUser(user);
         return "Success";
     }
 
-    @RequestMapping("/showUser")
-    public List<UserEntity> showUser(){
-        return userService.showUsers();
+    @RequestMapping("/showAllUser")
+    public List<UserEntity> showAllUser(){
+        return userService.showAllUsers();
     }
 
     @RequestMapping("/")
