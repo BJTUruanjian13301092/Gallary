@@ -1,0 +1,159 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>注册</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script th:src="@{/js/ie/html5shiv.js}"></script><![endif]-->
+		<link rel="stylesheet" th:href="@{/css/main.css}" />
+		<!--[if lte IE 8]><link rel="stylesheet" th:href="@{/css/ie8.css}" /><![endif]-->
+		<!--[if lte IE 9]><link rel="stylesheet" th:href="@{/css/ie9.css}" /><![endif]-->
+	</head>
+	<body>
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<h1><a href="#">Gallery</a></h1>
+						<nav id="nav">
+							<ul>
+								<li class="special">
+									<a href="#menu" class="menuToggle"><span>Menu</span></a>
+									<div id="menu">
+										<ul>
+											<li><a href="#">主页</a></li>
+											<li><a href="#">注册</a></li>
+											<li><a href="#">登录</a></li>
+											<li><a href="#">关于作者</a></li>
+										</ul>
+									</div>
+								</li>
+							</ul>
+						</nav>
+					</header>
+
+				<!-- Main -->
+					<article id="main">
+						<section class="wrapper style5">
+							<div class="inner">
+
+								<section>
+									<h4>个人信息</h4>
+									<form method="post" action="/user/saveUser">
+										<div class="row uniform">
+											<div class="12u$">
+												<input type="text" name="userName" id="userName" value="" placeholder="用户名" />
+											</div>
+											<div class="6u 12u$(xsmall)">
+												<input type="password" name="password" id="password" value="" placeholder="密码 请输入十位以内" />
+											</div>
+											<div class="6u$ 12u$(xsmall)">
+												<input type="password" name="confirmPassword" id="confirmPassword" value="" placeholder="确认密码" onchange="checkPassword()" />
+											</div>
+											<div class="12u$ 12u$(xsmall)" id="password_alert" style="color:red;visibility:hidden;">*两次密码不一致!</div>
+
+											<div class="12u 12u$(small)">
+												<span>所在地区：</span>
+											</div>
+											<div class="12u$">
+												<div class="select-wrapper">
+													<select name="location" id="location">
+														<option value="1">北京</option>
+														<option value="2">上海</option>
+														<option value="3">天津</option>
+														<option value="4">重庆</option>
+													</select>
+												</div>
+											</div>
+
+											<div class="6u 12u$(small)">
+												<input type="radio" id="sex_male" name="sex" value="1" checked>
+												<label for="sex_male">男</label>
+											</div>
+											<div class="6u 12u$(small)">
+												<input type="radio" id="sex_female" name="sex" value="0">
+												<label for="sex_female">女</label>
+											</div>
+
+											<div class="12u 12u$(small)">
+												<span>兴趣方向：</span>
+											</div>
+											<div class="4u 12u$(small)">
+												<input type="checkbox" id="hobby-painting" name="hobby" value="1">
+												<label for="hobby-painting">绘画</label>
+											</div>
+											<div class="4u 12u$(small)">
+												<input type="checkbox" id="hobby-sculpture" name="hobby" value="2">
+												<label for="hobby-sculpture">雕塑</label>
+											</div>
+											<div class="4u 12u$(small)">
+												<input type="checkbox" id="hobby-writing" name="hobby" value="3">
+												<label for="hobby-writing">行文</label>
+											</div>
+
+											<div class="12u$">
+												<textarea name="introduction" id="introduction" placeholder="您的个人介绍" rows="6"></textarea>
+											</div>
+											<div class="12u$">
+												<ul class="actions">
+													<li><input type="submit" value="确认" class="special" /></li>
+													<li><input type="reset" value="重置" /></li>
+												</ul>
+											</div>
+
+
+										</div>
+									</form>
+								</section>
+
+							</div>
+						</section>
+					</article>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<ul class="icons">
+							<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
+							<li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+						</ul>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script th:src="@{/js/jquery.min.js}"></script>
+			<script th:src="@{/js/jquery.scrollex.min.js}"></script>
+			<script th:src="@{/js/jquery.scrolly.min.js}"></script>
+			<script th:src="@{/js/skel.min.js}"></script>
+			<script th:src="@{/js/util.js}"></script>
+			<!--[if lte IE 8]><script th:src="@{/js/ie/respond.min.js}"></script><![endif]-->
+			<script th:src="@{/js/main.js}"></script>
+
+	</body>
+</html>
+
+<script type="text/javascript">
+
+	function checkPassword(){
+        var password = document.getElementById("password");
+        var confirmPassword = document.getElementById("confirmPassword");
+        var div = document.getElementById("password_alert");
+	    if(password.value != confirmPassword.value){
+	        div.style.visibility="visible";
+            div.style.color="red";
+            div.innerHTML="*两次输入密码不一致";
+        }
+		else{
+            div.style.visibility="visible";
+            div.style.color="green";
+            div.innerHTML="*两次输入密码一致";
+		}
+	}
+
+</script>

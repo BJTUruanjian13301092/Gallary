@@ -27,6 +27,9 @@ public class UserService {
 
     public UserEntity checkUser(UserEntity userEntity){
         String password = userRepo.findPasswordByUserName(userEntity.getUserName());
+        if(password == null){
+            return null;
+        }
         if(password.equals(userEntity.getPassword())){
             UserEntity user;
             user = userRepo.findUserByUserName(userEntity.getUserName()).get(0);
