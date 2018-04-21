@@ -1,0 +1,140 @@
+<!DOCTYPE HTML>
+
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+	<title>注册</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
+	<!--[if lte IE 8]><script th:src="@{/js/ie/html5shiv.js}"></script><![endif]-->
+	<link rel="stylesheet" th:href="@{/css/main.css}" />
+	<!--[if lte IE 8]><link rel="stylesheet" th:href="@{/css/ie8.css}" /><![endif]-->
+	<!--[if lte IE 9]><link rel="stylesheet" th:href="@{/css/ie9.css}" /><![endif]-->
+
+	<script th:inline="javascript">
+
+		var message = [[${message}]];
+		if(message != null){
+		    alert(message);
+		}
+
+	</script>
+
+
+</head>
+	<body>
+
+		<!-- Page Wrapper -->
+			<div id="page-wrapper">
+
+				<!-- Header -->
+					<header id="header">
+						<h1><a href="#">Gallery</a></h1>
+						<nav id="nav">
+							<ul>
+								<li class="special">
+									<a href="#menu" class="menuToggle"><span>Menu</span></a>
+									<div id="menu">
+										<ul>
+											<li><a href="#">主页</a></li>
+											<li><a href="#">注册</a></li>
+											<li><a href="#">登录</a></li>
+											<li><a href="#">关于作者</a></li>
+										</ul>
+									</div>
+								</li>
+							</ul>
+						</nav>
+					</header>
+
+				<!-- Main -->
+					<article id="main">
+
+						<header>
+							<h2>登录</h2>
+
+							<section class="style5 wrapper">
+								<div class="inner">
+									<section>
+										<h4>用户信息</h4>
+										<!--<form method="post" action="#">-->
+											<div class="row uniform">
+												<div class="12u$ 12u$(xsmall)">
+													<input type="text" name="userName" id="userName" value="" placeholder="用户名" />
+												</div>
+												<div class="12u$ 12u$(xsmall)">
+													<input type="password" name="password" id="password" value="" placeholder="密码" />
+												</div>
+												<div class="12u$">
+													<ul class="actions">
+														<li><input type="button" value="登录" class="special" onclick="sendToBack()" /></li>
+														<li><input type="reset" value="重置" /></li>
+													</ul>
+												</div>
+											</div>
+										<!--</form>-->
+									</section>
+								</div>
+							</section>
+
+						</header>
+
+					</article>
+
+				<!-- Footer -->
+					<footer id="footer">
+						<ul class="icons">
+							<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+							<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+							<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+							<li><a href="#" class="icon fa-dribbble"><span class="label">Dribbble</span></a></li>
+							<li><a href="#" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+						</ul>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+		<script th:src="@{/js/jquery.min.js}"></script>
+		<script th:src="@{/js/jquery.scrollex.min.js}"></script>
+		<script th:src="@{/js/jquery.scrolly.min.js}"></script>
+		<script th:src="@{/js/skel.min.js}"></script>
+		<script th:src="@{/js/util.js}"></script>
+		<!--[if lte IE 8]><script th:src="@{/js/ie/respond.min.js}"></script><![endif]-->
+		<script th:src="@{/js/main.js}"></script>
+
+	</body>
+</html>
+
+<script type="text/javascript">
+
+    function sendToBack(){
+        var userName = $("input[id='userName']").val();
+		var password = $("input[id='password']").val();
+		var user = {
+		    "userName" : userName,
+			"password" : password
+		};
+
+        $.ajax({
+			url : "/user/logIn",
+            dataType : "json",
+            type : "post",
+			data : user,
+            success : function(data) {
+                if(data.id != null){
+                    sessionStorage.setItem('user', JSON.stringify(data));
+                    window.location.href = "/";
+				}
+				else{
+					alert("用户名或密码输入错误");
+				}
+            },
+			error : function() {
+			    alert("error");
+			}
+        })
+
+
+	}
+
+</script>

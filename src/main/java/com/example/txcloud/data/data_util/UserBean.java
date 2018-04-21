@@ -1,20 +1,12 @@
-package com.example.txcloud.data.entity;
+package com.example.txcloud.data.data_util;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Table;
 import java.sql.Timestamp;
 
-@Entity
 @Data
-@Table(name="user")
-public class UserEntity {
+public class UserBean {
 
-    @Id
-    @GeneratedValue
     private Long id;
 
     private String name;
@@ -46,4 +38,6 @@ public class UserEntity {
     private Integer location;
 
     private String userName;
+
+    private String[] hobby;
 }

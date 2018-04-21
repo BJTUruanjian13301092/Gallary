@@ -25,18 +25,17 @@
 
 	<!-- Header -->
 	<header id="header" class="alt">
-		<h1><a href="index.html">Gallery</a></h1>
+		<h1><a href="#">Gallery</a></h1>
 		<nav id="nav">
 			<ul>
 				<li class="special">
 					<a href="#menu" class="menuToggle"><span>Menu</span></a>
 					<div id="menu">
 						<ul>
-							<li><a href="#">Home</a></li>
-							<li><a href="#">Elements</a></li>
-							<li><a href="#">Sign Up</a></li>
-							<li><a href="#">Log In</a></li>
-							<li><a href="#">Author</a></li>
+							<li><a href="#">主页</a></li>
+							<li><a href="#">注册</a></li>
+							<li><a href="#">登录</a></li>
+							<li><a href="#">关于作者</a></li>
 						</ul>
 					</div>
 				</li>
@@ -233,6 +232,24 @@
         centerMode: true,
         focusOnSelect: true
     });
+
+//
+//
+//    var userEntity = {
+//        userName: 'tom',
+//        age: 22
+//    };
+//
+//    // 存储值：将对象转换为Json字符串
+//    sessionStorage.setItem('user', JSON.stringify(userEntity));
+
+    var userJson = sessionStorage.getItem('user');
+    if(userJson != "undefined"){
+        var user = JSON.parse(userJson);
+        $("header[id='header']").find("h1").find("a").html("欢迎：" + user.userName);
+	}
+
+
 </script>
 
 </body>
