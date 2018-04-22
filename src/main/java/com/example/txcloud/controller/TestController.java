@@ -68,7 +68,7 @@ public class TestController {
         return new ModelAndView("master_list");
     }
 
-    @RequestMapping("/user/signUp")
+    @RequestMapping("/user/toSignUp")
     public ModelAndView toSignUp(){
         return new ModelAndView("sign_up");
     }
@@ -77,6 +77,12 @@ public class TestController {
     public ModelAndView toLogIn(){
         return new ModelAndView("log_in");
     }
+
+    @RequestMapping("/user/toUserHome")
+    public ModelAndView toUserHome(){
+        return new ModelAndView("user_info");
+    }
+
 
     @RequestMapping(value = "/user/logIn", method = {RequestMethod.GET, RequestMethod.POST})
     public UserEntity logIn(UserEntity user){
