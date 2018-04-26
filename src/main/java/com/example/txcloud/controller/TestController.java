@@ -95,4 +95,9 @@ public class TestController {
         }
     }
 
+    @RequestMapping("user/updateUser")
+    public void updateUser(){
+
+    }
+
 }

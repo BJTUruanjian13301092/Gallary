@@ -69,7 +69,7 @@
                             </div>
 
                             <div class="6u 12u$(small)">
-                                <input type="radio" id="sex_male" name="sex" value="1" checked>
+                                <input type="radio" id="sex_male" name="sex" value="1">
                                 <label for="sex_male">男</label>
                             </div>
                             <div class="6u 12u$(small)">
@@ -153,6 +153,12 @@
         $("header[id='header']").find("h1").find("a").html("欢迎：" + user.userName);
 
         $("input[id='userName']").val(user.userName);
+        $("input[id='password']").val(user.password);
+        $("select[id='location']").val(user.location);
+        $("input[name='sex'][value='" + user.sex + "']").attr("checked", "checked");
+        $("#introduction").val(user.introduction);
+        $("");
+
     }
 
 </script>
