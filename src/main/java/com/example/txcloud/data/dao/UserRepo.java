@@ -13,4 +13,6 @@ public interface UserRepo extends JpaRepository<UserEntity, String> {
 
     @Query("select user.password from UserEntity user where user.userName = ?1")
     String findPasswordByUserName(String userName);
+
+    UserEntity findUserById(Long id);
 }

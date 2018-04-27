@@ -27,11 +27,11 @@ public class UserBean {
 
     private String introduction;
 
-    private Timestamp createTime;
+    private String createTime;
 
-    private Timestamp updateTime;
+    private String updateTime;
 
-    private Timestamp birthday;
+    private String birthday;
 
     private Integer age;
 
@@ -40,4 +40,6 @@ public class UserBean {
     private String userName;
 
     private String[] hobby;
+
+    private String changePassword;
 }

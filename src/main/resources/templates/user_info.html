@@ -9,6 +9,18 @@
     <link rel="stylesheet" th:href="@{/css/main.css}" />
     <!--[if lte IE 8]><link rel="stylesheet" th:href="@{/css/ie8.css}" /><![endif]-->
     <!--[if lte IE 9]><link rel="stylesheet" th:href="@{/css/ie9.css}" /><![endif]-->
+
+    <script th:inline="javascript">
+
+        var userNew = [[${userNew}]];
+        if(userNew != null){
+            sessionStorage.removeItem('user');
+            sessionStorage.setItem('user', JSON.stringify(userNew));
+            alert("修改成功");
+        }
+
+    </script>
+
 </head>
 <body>
 
@@ -43,12 +55,14 @@
                 <section>
                     <h4>基本信息</h4>
                     <form method="post" action="/user/updateUser">
+                        <input type="hidden" name="id" id="id" />
+                        <input type="hidden" name="createTime" id="createTime" />
                         <div class="row uniform">
                             <div class="12u$">
-                                <input type="text" name="userName" id="userName" value="" placeholder="用户名" disabled="true" />
+                                <input type="text" name="userName" id="userName" value="" placeholder="用户名" readonly="readonly" />
                             </div>
                             <div class="6u 12u$(xsmall)">
-                                <input type="password" name="password" id="password" value="" placeholder="密码 请输入十位以内" />
+                                <input type="password" name="password" id="password" value="" placeholder="密码 请输入十位以内" readonly="readonly" />
                             </div>
                             <div class="6u$ 12u$(xsmall)">
                                 <input type="password" name="changePassword" id="changePassword" value="" placeholder="如需修改密码，请输入新密码" />
@@ -102,7 +116,7 @@
                             </div>
 
                             <div class="6u$ 12u$(xsmall)">
-                                <input type="text" name="birthday" id="birthday" placeholder="生日 (YYYY-MM-DD)" value="" />
+                                <input type="text" name="birthday" id="birthday" placeholder="生日格式 (YYYY-MM-DD 00:00:00)" value="" />
                             </div>
 
                             <div class="12u$">
@@ -152,12 +166,20 @@
         var user = JSON.parse(userJson);
         $("header[id='header']").find("h1").find("a").html("欢迎：" + user.userName);
 
-        $("input[id='userName']").val(user.userName);
-        $("input[id='password']").val(user.password);
-        $("select[id='location']").val(user.location);
-        $("input[name='sex'][value='" + user.sex + "']").attr("checked", "checked");
+        $("#userName").val(user.userName);
+        $("#password").val(user.password);
+        $("#location").val(user.location);
+        if(user.sex){
+            $(":radio[name='sex'][value='1']").prop("checked", "checked");
+        }
+        else{
+            $(":radio[name='sex'][value='0']").prop("checked", "checked");
+        }
         $("#introduction").val(user.introduction);
-        $("");
+        $("#phone").val(user.phone);
+        $("#birthday").val(user.birthday);
+        $("#id").val(user.id);
+        $("#createTime").val(user.createTime);
 
     }
 
