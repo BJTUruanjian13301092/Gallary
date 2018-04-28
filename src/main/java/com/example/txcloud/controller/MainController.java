@@ -1,8 +1,10 @@
 package com.example.txcloud.controller;
 
+import com.example.txcloud.data.dao.UserRepo;
 import com.example.txcloud.data.data_util.UserBean;
 import com.example.txcloud.data.entity.UserEntity;
 import com.example.txcloud.service.UserService;
+import com.google.gson.Gson;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.ObjectError;
@@ -11,19 +13,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.jws.WebParam;
-import javax.validation.Valid;
+import java.sql.Time;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
-public class TestController {
+public class MainController extends BaseController {
 
     private static final Byte DEFAULT_STAUS = Byte.valueOf("0");
 
     @Autowired
     UserService userService;
+
+    @Autowired
+    UserRepo userRepo;
 
     @RequestMapping(value = "/user/saveUser", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView saveUser(UserBean user){
@@ -42,6 +46,7 @@ public class TestController {
         userEntity.setWechatId(user.getWechatId());
         userEntity.setWeiboId(user.getWeiboId());
         userEntity.setUserName(user.getUserName());
+        userEntity.setArtCoin(Long.valueOf("0"));
 
         String result = userService.saveUser(userEntity);
         if(result.equals("fail")){
@@ -109,6 +114,10 @@ public class TestController {
             userBean.setAge(result.getAge());
             userBean.setLocation(result.getLocation());
             userBean.setUserName(result.getUserName());
+            if(result.getSignDate() != null){
+                userBean.setSignDate(result.getSignDate().toString());
+            }
+            userBean.setArtCoin(result.getArtCoin());
 
             return userBean;
         }
@@ -145,6 +154,9 @@ public class TestController {
         userEntity.setWechatId(user.getWechatId());
         userEntity.setWeiboId(user.getWeiboId());
         userEntity.setUserName(user.getUserName());
+        userEntity.setArtCoin(user.getArtCoin());
+        userEntity.setSignDate(Timestamp.valueOf(user.getSignDate()));
+
         if(user.getChangePassword() != null && !user.getChangePassword().equals("")){
             userEntity.setPassword(user.getChangePassword());
             user.setPassword(user.getChangePassword());
@@ -155,6 +167,32 @@ public class TestController {
         mav.getModel().put("userNew", user);
 
         return mav;
+    }
+
+    @RequestMapping(value = "user/signDate", method = {RequestMethod.GET, RequestMethod.POST})
+    public String toSignDate(UserBean user){
+        UserEntity userEntity = new UserEntity();
+        userEntity.setId(user.getId());
+        userEntity.setName(user.getName());
+        userEntity.setAge(user.getAge());
+        userEntity.setBirthday(Timestamp.valueOf(user.getBirthday()));
+        userEntity.setCreateTime(Timestamp.valueOf(user.getCreateTime()));
+        userEntity.setUpdateTime(Timestamp.valueOf(user.getUpdateTime()));
+        userEntity.setIntroduction(user.getIntroduction());
+        userEntity.setLocation(user.getLocation());
+        userEntity.setPassword(user.getPassword());
+        userEntity.setPhone(user.getPhone());
+        userEntity.setQqId(user.getQqId());
+        userEntity.setSex(user.getSex());
+        userEntity.setStatus(DEFAULT_STAUS);
+        userEntity.setWechatId(user.getWechatId());
+        userEntity.setWeiboId(user.getWeiboId());
+        userEntity.setUserName(user.getUserName());
+        userEntity.setSignDate(Timestamp.valueOf(user.getSignDate()));
+        userEntity.setArtCoin(Long.valueOf("5") + userRepo.findUserById(user.getId()).getArtCoin());
+        userService.updateUser(userEntity);
+        Gson gson = new Gson();
+        return gson.toJson("签到成功, +5艺术值");
     }
 
 }

@@ -46,4 +46,8 @@ public class UserEntity {
     private Integer location;
 
     private String userName;
+
+    private Timestamp signDate;
+
+    private Long artCoin;
 }

@@ -42,4 +42,8 @@ public class UserBean {
     private String[] hobby;
 
     private String changePassword;
+
+    private String signDate;
+
+    private Long artCoin;
 }
