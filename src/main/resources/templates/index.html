@@ -53,7 +53,7 @@
 				更多精彩内容即将上线<br />
 				designed by <a href="#">Master Yitong</a>.</p>
 			<ul class="actions">
-				<li><button class="button special" id="signUp">Activate</button></li>
+				<li><button class="button special" id="signUp" onclick="logIn()">登录</button></li>
 			</ul>
 		</div>
 		<a href="#one" class="more scrolly">Learn More</a>
@@ -295,6 +295,10 @@
                 alert("error");
             }
         })
+	}
+
+	function logIn(){
+        window.location.href = "/user/toLogIn";
 	}
 
 
