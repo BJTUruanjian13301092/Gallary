@@ -123,7 +123,7 @@
 			data : user,
             success : function(data) {
                 if(data.id != null){
-                    sessionStorage.setItem('user', JSON.stringify(data));
+                    localStorage.setItem('user', JSON.stringify(data));
                     window.location.href = "/";
 				}
 				else{

@@ -169,7 +169,7 @@
 
 <script type="text/javascript">
 
-    var userJson = sessionStorage.getItem('user');
+    var userJson = localStorage.getItem('user');
     if(userJson != "undefined"){
         var user = JSON.parse(userJson);
         $("header[id='header']").find("h1").find("a").html("欢迎：" + user.userName);

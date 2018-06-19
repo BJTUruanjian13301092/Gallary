@@ -1,4 +1,4 @@
 function logOff(){
-    sessionStorage.removeItem('user');
+    localStorage.removeItem('user');
     alert("注销成功");
 }
